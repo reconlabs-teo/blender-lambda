@@ -2,7 +2,12 @@ terraform {
     required_providers {
         aws = {
             source = "hashicorp/aws"
-            version = "~> 3.48.0"
+            version = ">= 4.22.0"
+        }
+
+        docker = {
+            source  = "kreuzwerker/docker"
+            version = ">= 3.0.0"
         }
     }
 
@@ -15,4 +20,11 @@ provider "aws" {
     default_tags {
         tags = var.default_tags
     }
+}
+
+provider "docker" {
+  registry_auth {
+      address     = "790590917886.dkr.ecr.ap-northeast-1.amazonaws.com"
+      config_file = pathexpand("~/.docker/config.json")
+  }
 }

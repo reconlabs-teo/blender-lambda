@@ -39,7 +39,9 @@ def handler(event, context):
 
         logger.info('Done.')
     except Exception as e:
+        print('[Error] Consumer')
         logger.exception(e)
+        upload_file_to_s3(f'/tmp/render_file.crash.txt')
         raise e
 
 
